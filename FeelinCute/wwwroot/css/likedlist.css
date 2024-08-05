@@ -1,0 +1,15 @@
+﻿.liked-info{
+    width:100%;
+    font-size:18px;
+    font-weight:bold;
+}
+.liked-info *{
+    margin: 20px;
+}
+.liked-info img{
+    height:80px;
+}
+#liked-products{
+    width:100%;
+    display:inline-block;
+}

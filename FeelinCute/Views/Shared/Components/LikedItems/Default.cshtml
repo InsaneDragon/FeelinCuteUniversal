@@ -1,0 +1,19 @@
+﻿@model List<FeelinCute.Models.ProductForLiked>
+<head>
+    <link rel="stylesheet" href="~/css/likedlist.css" asp-append-version="true" />
+</head>
+<body>
+    <span id="hidden-like-count" style="display:none">@Model.Count</span>
+    <div id="liked-products">
+        @foreach (ProductForLiked product in Model)
+        {
+            <div class="liked-info" id="liked-@product.Id">
+                <a>
+                    <img src="~/images/@product.Image" />
+                    <span class="prd-name">@product.Name</span>
+                </a>
+            </div>
+        }
+    </div>
+</body>
+<script src="~/js/cartlist.js" asp-append-version="true"></script>

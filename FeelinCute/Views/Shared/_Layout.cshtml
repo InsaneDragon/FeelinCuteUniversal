@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FeelinCute</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
+</head>
+<body id="app-content">
+    <header>
+        <nav class="" id="navbar">
+            <div class="nav-container" id="search">
+                <form class="search-container container" asp-action="ProductsList" asp-controller="Products" method="post">
+                    <input type="text" id="search" name="search" placeholder="Search anything..." class="search-box">
+                    <button type="submit" class="search-icon">
+                        <img src="~/images/icons/magnifying-glass.png" onclick="toggleShow()" />
+                    </button>
+                </form>
+            </div>
+            <div class="nav-container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo-image" src="~/images/icons/cute-panther.png" /></a>
+            </div>
+            <div class="nav-container">
+                <div class="cart-container">
+                    <div class="dropdown profile-container">
+                        <button class="profile-btn"><img class="profile-icon nav-icon" src="~/images/icons/profile.png" /></button>
+                        <div class="dropdown-content">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
+                    <button id="liked-btn" class="liked-item">
+                        <img class="heart-icon nav-icon" src="~/images/icons/heart-red.svg" />
+                        <span class="like-count like-count-icon">0</span>
+                    </button>
+                    <button class="cart-button" id="cart-btn">
+                        <img src="~/images/icons/shopping-cart.png" class="shopping-cart nav-icon">
+                        <span class="cart-count cart-count-icon">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        @await Component.InvokeAsync("EmailPopup")
+        <div id="cart-popup" class="right-popup">
+            <div class="left">
+                <button id="cart-close" class="popup-close">X</button>
+                <span>Your Cart</span>
+            </div>
+            <div class="right items-num">
+                <span class="cart-count">0</span>
+                <span>Items</span>
+            </div>
+            <section id="cartForm">
+                @await Component.InvokeAsync("CartList")
+            </section>
+        </div>
+        <div id="liked-popup" class="right-popup">
+            <div class="left">
+                <button id="likedCloseBtn" class="popup-close">X</button>
+                <span>Your Liked Items</span>
+            </div>
+            <div class="right items-num">
+                <span class="like-count">0</span>
+                <span>Items</span>
+            </div>
+            <section id="likedForm">
+                @await Component.InvokeAsync("LikedItems")
+            </section>
+        </div>
+        <div class="wrapper">
+            @RenderBody()
+        </div>
+    </main>
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="border-bottom flex-box">
+                <div class="row">
+                    <div class="box footer-links">
+                        <h4>Useful Links</h4>
+                        <ul class="inline">
+                            <li>
+                                @Html.ActionLink("Home","Index","Home")
+                            </li>
+                            <li>
+                                <i class="bx bx-chevron-right"></i> <a href="#">About us</a>
+                            </li>
+                            <li>@Html.ActionLink("Terms Of Service","TermsOfService","Home")</li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Home/PrivacyPolicy">Privacy policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="box footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            <strong>Phone:</strong> +1 260 888 9945<br />
+                            <strong>Email:</strong> bakhrievpulod@gmail.com
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h4 >Join us to get special deals and discounts</h4>
+                        <div class="input-group">
+                            <input type="text" class="subscribe-input" placeholder="Email Address">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="button">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:20px;">©2024 arion.com</p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+@RenderSection("Scripts", required: false)
+</html>

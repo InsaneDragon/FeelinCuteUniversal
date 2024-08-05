@@ -1,0 +1,44 @@
+﻿.picture-container {
+    display: inline-block;
+    float: left;
+}
+
+.product-small-images {
+    margin-top: 10px;
+}
+
+    .product-small-images img {
+        padding: 10px;
+        width: 15%;
+    }
+
+.main-img {
+    display: block;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+    .image-container .prd-img {
+        height: 60vh;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+.image-container:hover {
+    cursor: zoom-in;
+}
+
+main {
+    margin-top: 20px;
+}
+
+.small-image:hover {
+    outline: solid 1px;
+    border-radius: 10px;
+}

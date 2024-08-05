@@ -1,0 +1,55 @@
+﻿
+.product-info {
+    font-size: 17px;
+    text-align: center;
+    display: inline-block;
+    width: 47%;
+    background-color: white;
+    margin: 1%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.image-container {
+    overflow: hidden;
+    width:100%;
+}
+
+.cool-btn {
+    background-color: transparent;
+    text-align: center;
+    padding: 10px;
+    margin-left: 10px;
+    width: 50%;
+}
+
+.danger-btn:hover {
+    background-color: red;
+    color: white;
+    transition: 0.5s ease;
+}
+
+.info-btn:hover {
+    background-color: red;
+    color: white;
+    transition: 0.5s ease;
+}
+
+.action-links {
+    display: flex;
+    padding: 10px;
+}
+
+    .action-links * {
+        margin: 5px;
+    }
+
+.line {
+    display: inline-block;
+    width: 100%;
+    margin: 10px;
+}
+
+.product-info * {
+    padding: 5px;
+}

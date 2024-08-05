@@ -1,0 +1,84 @@
+﻿@model PurchasePackage[]
+@{
+    double Sum = 0;
+    double DiscountedPrice = 0;
+}
+<head>
+
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User Email</th>
+                <th>Purchases</th>
+                <th>Delivery Address</th>
+                <th>Purchase Date</th>
+                <th>Status</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (PurchasePackage purchasePackage in Model)
+            {
+                Sum = 0;
+                <tr>
+                    <td><a>@purchasePackage.ClientEmail</a></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <span>Details</span>
+                            </button>
+                            <div class="dropdown-content">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Discount</th>
+                                            <th>Discounted Price</th>
+                                            <th>Count</th>
+                                            <th>SubTotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Purchase purchase in purchasePackage.Purchases)
+                                        {
+                                            DiscountedPrice = purchase.GetDiscountedPrice();
+                                            Sum += DiscountedPrice * purchase.ProductCount;
+                                            <tr>
+                                                <td><a href="/Home/ProductDetails?productId=@purchase.ProductId"><img style="width:40px" src="~/images/@purchase.Image" /></a></td>
+                                                <td><a href="/Home/ProductDetails?productId=@purchase.ProductId">@purchase.Name</a></td>
+                                                <td>$@purchase.ProductPrice</td>
+                                                <td>@purchase.ProductDiscount %</td>
+                                                <td>$@DiscountedPrice</td>
+                                                <td>@purchase.ProductCount</td>
+                                                <td>$@(DiscountedPrice * purchase.ProductCount)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@purchasePackage.ClientAddress</td>
+                    <td>@purchasePackage.PurchaseDate</td>
+                    <td>
+                        <select id="orderStatus" class="form-control" onchange="handleStatusChange('@purchasePackage.GetId()')">
+                            <option value="@purchasePackage.Status" selected>@purchasePackage.Status</option>
+                            @foreach (string status in purchasePackage.AllowedStatuses)
+                            {
+                                if (status != purchasePackage.Status)
+                                {
+                                    <option value="@status">@status</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>$@Sum</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

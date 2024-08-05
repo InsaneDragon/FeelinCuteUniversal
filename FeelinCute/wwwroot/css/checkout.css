@@ -1,0 +1,70 @@
+﻿.Sides {
+    text-align: center;
+    font-size: 0.8vw;
+}
+
+main img {
+    height: 12vh;
+}
+
+.sum-container {
+    font-weight: bold;
+}
+
+thead {
+    font-size: 19px;
+}
+
+tbody {
+    font-size: 17px;
+}
+
+.sum-container {
+    font-size: 20px;
+}
+
+.trash-btn {
+    width: 38px;
+    height: 25px;
+    border: none;
+    background-color: white;
+    outline: none;
+    border: none;
+}
+
+    .trash-btn img {
+        width: 100%;
+        height: 100%;
+    }
+
+.form-group {
+    text-align: left;
+    float: left;
+    width: 50%;
+    padding: 15px;
+}
+
+.btn {
+    width: 50%;
+}
+
+@media (width<1300px) {
+    .Sides {
+        width: 100%;
+    }
+    .main{
+        display:block;
+    }
+}
+
+@media (width<768px) {
+    .Sides {
+        padding:0;
+    }
+}
+.summary span {
+    font-size: 15px;
+}
+.summary {
+    margin-bottom: 8px;
+}

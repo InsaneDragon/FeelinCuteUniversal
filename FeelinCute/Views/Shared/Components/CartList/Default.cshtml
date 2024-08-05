@@ -1,0 +1,38 @@
+﻿@model List<FeelinCute.Models.ProductForCookie>
+<head>
+    <link rel="stylesheet" href="~/css/cartlist.css" asp-append-version="true" />
+</head>
+<body>
+    <span id="hidden-cart-count" style="display:none">@Model.Count</span>
+    <div id="cart-products">
+        @foreach (ProductForCookie product in Model)
+        {
+            double discountedprice = product.Discount != null ? product.Price - (product.Discount.Value / 100 * product.Price) : product.Price;
+            double sum = discountedprice * product.PCount;
+            <div id="product-@product.Id" class="product-info Sides">
+                <div class="image-container">
+                    @Html.ActionLink("", "ProductDetails", "Home", new { productId = product.Id}, new { style=$"background-image:url(/images/{product.Image});", @class = "cart-img" })
+                </div>
+                <div class="line">
+                    <span class="prd-name">@product.Name</span>
+                    <span>$</span>
+                    <span id="price-@product.Id" class="prd-price">@sum</span>
+                </div>
+                <div class="line">
+                    <button onclick="changeQuantity(@product.Id,'<')" class="arrow">&lt;</button>
+                    <span id="quantity-@product.Id">@product.PCount</span>
+                    <button onclick="changeQuantity(@product.Id,'>')" class="arrow">&gt;</button>
+                </div>
+                <div class="action-links">
+                    @Html.ActionLink("Edit", "ProductDetails", "Home", new { productId = product.Id}, new { @class = "btn-outline-info form-control" })
+                    <button onclick="removeProduct(@product.Id)" class="btn-outline-danger form-control">Remove</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="action-links">
+        @Html.ActionLink("CHECKOUT", "CheckOutView", "CheckOut", null, new { @class = "checkout-btn form-control cool-btn" })
+        @Html.ActionLink("Pay", "CheckOutView", "CheckOut", null, new { @class = "apple-pay form-control cool-btn" })
+    </div>
+</body>
+<script src="~/js/cartlist.js" asp-append-version="true"></script>

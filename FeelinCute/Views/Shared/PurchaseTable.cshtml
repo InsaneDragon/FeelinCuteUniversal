@@ -1,0 +1,28 @@
+﻿@model PurchasePackage[]
+<head>
+    <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+    <h1 style="text-align:center">Orders</h1>
+    <div class="search-bar">
+        <form class="form-group" asp-action="SearchForPurchaseById" asp-controller="Admin" method="GET">
+            <label for="Id">Search by Confirmation Number</label><br />
+            <input type="text" id="purchaseId" class="" name="purchaseId" pattern=".{15}" required />
+            <button type="submit"> Search</button>
+        </form>
+        <form class="form-group" asp-action="SearchForPurchase" asp-controller="Admin" method="GET">
+            <label for="Id">Search by Email or Name</label><br />
+            <input type="text" id="searchText" name="searchText" pattern=".*\S+.*" class="" required />
+            <button type="submit"> Search</button>
+        </form>
+    </div>
+        @if (Model.Length > 0)
+        {
+            @await Component.InvokeAsync("PurchasesTable", new {purchasePackages=Model})
+        }
+        else
+        {
+            <h2 style="text-align:center">No Results Found</h2>
+        }
+</body>
+<script src="/js/admin.js" asp-append-version="true"></script>

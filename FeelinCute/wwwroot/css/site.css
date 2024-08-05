@@ -1,0 +1,553 @@
+body button {
+    cursor: pointer;
+}
+
+.logo-image {
+    width: 70px;
+    height: 70px;
+}
+
+.search-container {
+    border-radius: 1.5rem;
+    background-color: white;
+    width: 400px;
+    border: 1px solid #e0e0e0;
+    padding-left:0;
+}
+
+.cart-img {
+    display: block;
+    height: 25vh;
+    background-size: 100% 100%; /* Stretch the background image to cover the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+}
+
+.search-box {
+    float: left;
+    outline: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 1.5rem;
+    width:80%;
+}
+
+.search-icon {
+    float: right;
+    cursor: pointer;
+    border: none;
+    margin-top: 5px;
+    background-color: white;
+}
+
+    .search-icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+.nav-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+.cart-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.nav-container {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    padding: 5px 20px 5px 20px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.3s;
+    z-index: 100;
+    border-bottom: solid 2px #e0e0e0;
+}
+
+@media (width < 800px) {
+    .nav-container {
+        width: 50%;
+        text-align: left;
+    }
+
+    #search {
+        display: none;
+    }
+}
+
+.liked-item {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    margin-right: 25px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.like-count-icon {
+    position: absolute;
+    bottom: 15px; /* Adjust as needed */
+    left: 45%;
+    background-color: red; /* Background color of the number */
+    color: white; /* Text color of the number */
+    font-size: 10px; /* Adjust size as needed */
+    padding: 2px 6px; /* Adjust as needed */
+    border-radius: 50%; /* Make it circular */
+}
+
+.cart-count-icon {
+    position: absolute;
+    font-size: 10px;
+    bottom: 15px; /* Adjust as needed */
+    left: 45%;
+    background-color: green; /* Background color of the number */
+    color: white; /* Text color of the number */
+    padding: 2px 6px; /* Adjust as needed */
+    border-radius: 50%; /* Make it circular */
+}
+
+.file-icon {
+    width: 30px;
+}
+
+.profile-btn {
+    background-color: transparent;
+    margin-right: 20px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.right-popup {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #f0f0f0;
+    width: 0;
+    min-height: 100%;
+    z-index: 1001;
+    overflow-x: hidden;
+}
+
+.popup-close {
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.cart-nav {
+    border: solid 1px;
+}
+
+#buy-btn {
+    width: 80%;
+    margin-left: 10%;
+    font-weight: bold;
+}
+
+#cartForm {
+    padding-top: 50px;
+}
+
+.like-button {
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.big-text {
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 4px 4px 0 #aaa;
+    text-align: center;
+    display: block;
+}
+
+.Sides {
+    width: 50%;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.main-img {
+    width: 100%;
+}
+
+.price-container span {
+    margin-right: 10px;
+}
+
+.text-md {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.picture-container {
+    text-align: center;
+}
+
+.main {
+    display: flex;
+}
+
+.discounted-price {
+    text-decoration: line-through;
+}
+
+.discount {
+    font-weight: bold;
+    color: red;
+}
+
+.discounted-price {
+    font-size: 20px;
+}
+
+.price {
+    font-size: 20px;
+}
+
+
+
+.small-icon {
+    width: 20px;
+}
+
+.icon-container {
+    margin-top: 20px;
+}
+
+.icon-text {
+    margin-left: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    animation: slow-appear-animation 0.5s ease forwards;
+}
+
+@keyframes slow-appear-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+/* Style the button */
+.dropbtn {
+    text-align: left;
+    border: none;
+    width: 100%;
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-bottom: solid 2px #e0e0e0;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+    .dropbtn:focus {
+        outline: none;
+    }
+
+.right {
+    float: right;
+}
+
+.arrow-down {
+    margin-top: 12px;
+    border-left: 10px solid transparent; /* Adjust size as needed */
+    border-right: 10px solid transparent; /* Adjust size as needed */
+    border-top: 10px solid black; /* Adjust size and color as needed */
+}
+
+.text-sm {
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+
+.add-btn {
+    margin-top: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+    .add-btn:hover {
+        animation: change-color 1s forwards;
+    }
+
+@keyframes change-color {
+
+    100% {
+        background-color: #28a745; /* End color */
+        color: white;
+    }
+}
+
+.buy-btn {
+    margin-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #603FEF;
+    text-align: center;
+}
+
+
+
+.arrow {
+    width: 25px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+}
+
+.wrapper {
+    margin-top: 92px;
+    min-height: 100vh;
+}
+
+.items-num {
+    margin: 10px;
+}
+
+.shake {
+    animation: shake .7s;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0px);
+    }
+
+    20%, 80% {
+        transform: translateX(-3px) rotate(-7deg);
+    }
+
+    40%, 60% {
+        transform: translateX(3px) rotate(7deg);
+    }
+
+    50% {
+        transform: translateX(0px);
+    }
+}
+
+
+.mini-image {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    transition: transform 1s ease;
+    visibility: hidden;
+    z-index: 1001;
+}
+
+.dark-circle {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.high {
+    height: 40vh;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    margin: 15px;
+    padding: 0;
+    width: 24%;
+    text-align: center;
+    transform: scale(1);
+    justify-content: center;
+}
+
+    .high a {
+    }
+
+.carousel-item {
+    align-items: initial;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    height: 40px;
+    position:absolute;
+    top:35%;
+    width: auto;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    display: flex;
+}
+
+#carouselExampleIndicators img {
+    height: 60vh;
+    object-fit: cover;
+}
+
+.products {
+    padding: 3% 10% 3% 10%;
+}
+
+.product {
+    display: inline-block;
+    width: 25%;
+    padding: 10px;
+    transform: scale(1);
+    height: auto;
+}
+
+    .product span {
+        padding: 5px;
+    }
+
+.product-img {
+    display: block;
+    aspect-ratio: 1/1;
+    background-size: 100% 100%; /* Stretch the background image to cover the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+}
+
+.dropdown-content {
+    padding-top: 15px;
+}
+
+.cat {
+    margin-top: 20px;
+    border: 1px solid #ced4da;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.violet input:checked + span {
+    background-color: violet;
+}
+
+.cat label {
+    cursor: pointer;
+    line-height: 37px;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+    .cat label span {
+        text-align: center;
+        display: block;
+    }
+
+    .cat label input {
+        position: absolute;
+        display: none;
+        color: #fff !important;
+    }
+/* This will declare how a selected input will look giving generic properties */
+.cat input:checked + span {
+    color: #ffffff;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+
+.cat input:not(:checked) + span {
+    transition: all 0.5s ease;
+}
+.cart-container .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-container .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.cart-container .dropdown:hover .dropdown-content {
+    display: block;
+}
+.inline {
+    display: flex;
+    justify-content: center;
+}
+.row{
+    width:100%;
+}
+.box {
+    width: 33.33%;
+    justify-content: center;
+}
+@media (width<860px) {
+    .Sides, .box {
+        width: 100%;
+    }
+
+    .main {
+        display: block;
+    }
+}
+.subscribe-input {
+    min-width: 300px;
+    border: none;
+    border-left: 1px gray;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+    padding:10px;
+}
+.input-group {
+    justify-content: center;
+}
+.input-group input{
+    outline:none;
+}
+.search-bar{
+    padding:20px;
+    display:inline-block;
+
+}
+.search-bar .form-group{
+    margin:10px;
+}

@@ -1,0 +1,94 @@
+﻿.comments {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment {
+    padding: 20px;
+}
+
+.comments-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+.stars {
+    color: #007bff; /* Blue color */
+}
+
+    .stars .star {
+        font-size: 40px;
+    }
+
+.comment-pic {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    flex-grow: 1; /* Allow comments to grow equally */
+}
+
+.comment img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment .name {
+    margin-top: 16px;
+}
+
+.comment:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.comment-text {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+    .comment-text span {
+        font-size: 20px;
+    }
+
+
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+#Comments .carousel-control-next-icon:after,
+#Comments .carousel-control-prev-icon:after {
+    font-size: 35px;
+    position: absolute;
+    top: 20%;
+    align-content: center;
+    font-weight: bold;
+    color: blue;
+}
+
+#Comments .carousel-control-next-icon:after {
+    content: '>';
+}
+
+#Comments .carousel-control-prev-icon:after {
+    content: '<';
+}
+
+#Comments .carousel-control-next-icon:hover,
+#Comments .carousel-control-prev-icon:hover {
+    transition: opacity 0.3s ease;
+    opacity: 0.5;
+}

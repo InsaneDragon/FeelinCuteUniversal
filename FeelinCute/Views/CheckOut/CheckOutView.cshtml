@@ -1,0 +1,122 @@
+﻿@model UserInfoForCheckOut
+<head>
+    <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
+</head>
+<body>
+    <main>
+        <div class="main">
+            <section class="cart-sum Sides">
+                <div class="summary">
+                    <span>Total: $</span>
+                    @{
+                        List<ProductForCookie> products = ViewBag.ProductList;
+                        double total_sum = 0;
+                        products.ForEach(product =>
+                        total_sum += product.Discount != null ? product.Price - (product.Discount.Value / 100 * product.Price) : product.Price
+                        );
+                    }
+                    <span id="total-sum">@total_sum</span>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody style="padding:0;">
+                        @foreach (ProductForCookie product in products)
+                        {
+                            double sum = product.GetDiscountedPrice() * product.PCount;
+                            <tr id="prd-@product.Id">
+                                <td><img src="~/images/@product.Image" /></td>
+                                <td><span>@product.Name</span></td>
+                                <td>
+                                    <span>$</span>
+                                    <span id="price-@product.Id" class="prd-price">@product.GetDiscountedPrice()</span>
+                                </td>
+                                <td>
+                                    <button onclick="changeQuantityForCheckOut(@product.Id,'<')" class="arrow">&lt;</button>
+                                    <span id="checkoutquantity-@product.Id">@product.PCount</span>
+                                    <button onclick="changeQuantityForCheckOut(@product.Id,'>')" class="arrow">&gt;</button>
+                                </td>
+                                <td><span>$</span><span id="sum-@product.Id">@sum</span></td>
+                                <td>
+                                    <button onclick="removeProductForCheckOut(@product.Id)" class="trash-btn"><img src="~/images/icons/bin.png" /></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
+            <section class="Sides">
+                <form action="@Url.Action("ConfirmPurchaseView", "CheckOut")" method="post">
+                    @{
+                        var User = ViewBag.User;
+                        string firstNameValue = (User != null) ? User.FirstName : "";
+                        string lastNameValue= (User != null) ? User.LastName : "";
+                        string emailValue = (User != null) ? User.Email : "";
+                    }
+                    <h2>Contact Information for Shipment</h2>
+                    <div class="form-group">
+                        <label for="FirstName">First Name:</label>
+                        <input type="text" id="FirstName" name="FirstName" pattern=".*\S+.*" value="@firstNameValue" class="form-control" placeholder="First Name" required />
+                        @Html.ValidationMessage("FirstName")
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName">Last Name:</label>
+                        <input type="text" id="LastName" name="LastName" pattern=".*\S+.*" value="@lastNameValue" class="form-control" placeholder="Last Name" required />
+                        @Html.ValidationMessage("LastName")
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email:</label>
+                        <input type="email" id="Email" name="Email" value="@emailValue" class="form-control" placeholder="Email" required />
+                        @Html.ValidationMessage("Email")
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneNumber">Phone Number (Optional):</label>
+                        <input type="tel" id="PhoneNumber" name="PhoneNumber" class="form-control" placeholder="Phone Number" pattern=".{10}" title="Invalid Phone Number Format" />
+                        @Html.ValidationMessage("PhoneNumber")
+                    </div>
+                    <div class="form-group">
+                        <label for="StreetAddress">Street Address:</label>
+                        <input type="text" id="StreetAddress" pattern=".*\S+.*" name="StreetAddress" class="form-control" placeholder="Street Address" required />
+                        @Html.ValidationMessage("StreetAddress")
+                    </div>
+                    <div class="form-group">
+                        <label for="Apt">Apt# (Optional):</label>
+                        <input type="number" id="Apt" name="Apt" class="form-control" placeholder="#" />
+                        @Html.ValidationMessage("Apt")
+                    </div>
+                    <div class="form-group">
+                        <label for="City">City:</label>
+                        <input type="text" id="City" name="City" class="form-control" placeholder="City" required />    
+                        @Html.ValidationMessage("City")
+                    </div>
+                    <div class="form-group">
+                        <label for="State">State:</label>
+                        <select id="State" name="State" class="form-control" required>
+                            <option value="">Select State</option>
+                            @foreach (var state in UserInfoForCheckOut.States)
+                            {
+                                <option value="@state">@state</option>
+                            }
+                        </select>
+                        @Html.ValidationMessage("State")
+                    </div>
+                    <div class="form-group">
+                        <label for="ZipCode">Zip Code (Optional):</label>
+                        <input type="text" id="ZipCode" name="ZipCode" class="form-control" placeholder="Zip Code"/>
+                        @Html.ValidationMessage("ZipCode")
+                    </div>
+                    <button type="submit" class="form-control">Submit</button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+<script src="~/js/checkout.js" asp-append-version="true"></script>

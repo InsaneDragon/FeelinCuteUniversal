@@ -1,0 +1,19 @@
+﻿<head>
+    <link rel="stylesheet" href="~/css/emailpopup.css" asp-append-version="true" />
+
+</head>
+<body>
+    <div id="overlay"></div>
+    <div id="email-popup">
+        <button id="closeBtn" class="close-form">X</button>
+        <h4>FeelinCute</h4>
+        <h2>20% off your first order</h2>
+        <div asp-action="SendEmailAction" asp-controller="Email">
+            <div id="error" class="danger" style="display: none;">Email cannot be empty</div>
+            <input type="email" placeholder="Email" id="email-input" class="form-control">
+            <button class="form-control btn-primary" id="email-btn">Continue</button>
+            <button class="text-btn close-form">no thanks</button>
+        </div>
+    </div>
+</body>
+<script src="~/js/emailpopup.js"></script>
