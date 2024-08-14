@@ -2,8 +2,7 @@
 <head>
     <link rel="stylesheet" href="~/css/productdetails.css" />
 </head>
-<body>
-    <main>
+    <section>
         @{
             if (ViewBag.IsInCart == true)
             {
@@ -15,117 +14,113 @@
                 </div>
             }
         }
-        <section class="container">
-            <div class="main">
-                <div class="Sides picture-container">
-                    <div class="image-container" id="product-container-@Model.Id" onmousemove="zoom(event)">
-                        <div class="product-wrapper">
-                            <img class="prd-img" src="~/images/@Model.Image" id="image" />
-                            <img src="/images/@Model.Image" id="mini-image-@Model.Id" alt="Mini Image" class="mini-image">
-                        </div>
-                    </div>
-                    <div class="product-small-images">
-                        @foreach (string image in ViewBag.ProductImages)
-                        {
-                            string imagesrc = $"/images/productimages/product{Model.Id}/{image}";
-                            <img class="small-image" src="@imagesrc" />
-                        }
-                    </div>
+        <div class="d-flex justify-content-center flex-wrap side-space">
+            <div class="flex-item picture-container two-sides">
+                <div class="image-container" id="product-container-@Model.Id" onmousemove="zoom(event)">
+                    <img class="prd-img" src="~/images/@Model.Image" id="image" />
+                    <img src="/images/@Model.Image" id="mini-image-@Model.Id" alt="Mini Image" class="mini-image">
                 </div>
-                <div class="Sides product-text padd-40">
-                    <h2 class="text-md">@Model.Name</h2>
-                    <h6>Price</h6>
-                    <div class="price-container">
-                        @if (Model.Discount != null)
-                        {
-                            <span class="discounted-price">$ @Model.Price</span>
-                            <span class="price">$ @Model.GetDiscountedPrice()</span>
-                            <span class="discount">@Model.Discount %</span>
-                        }
-                        else
-                        {
-                            <span class="price">$ @Model.Price</span>
-                        }
-                    </div>
-                    <div class="icon-container">
-                        <img class="small-icon" src="~/images/icons/globe.png" />
-                        <span class="icon-text">FREE SHIPPING within US</span>
-                    </div>
-                    <div class="icon-container">
-                        <img class="small-icon" src="~/images/icons/heart.svg" />
-                        <span class="icon-text">#1 Choice by our customers</span>
-                    </div>
-                    <div class="dropdown">
-                        <button class="dropbtn">
-                            <span>Details</span>
-                            <div class="right arrow-down"></div>
-                        </button>
-                        <div class="dropdown-content">
-                            <span>
-                                • Measures approximately: 24" x 19.5" x 50"
-                                <br />
-                                • 100% all-natural Ash Wood
-                                <br />
-
-                                • 5 levels for ultimate kitty play
-                                <br />
-
-                                • Sleek, modern S-curve design
-                                <br />
-
-                                • Cozy Hammock and Basket Lounge
-                                <br />
-
-                                • 2 Removable sisal scratcher side pads
-                                <br />
-
-                                • 4 Removable felt platform covers to stimulate scratching and stress relief
-                                <br />
-
-                                • Hideaway cubby
-                                <br />
-
-                                • Plush faux fur cushion for hideaway cubby
-                                <br />
-
-                                • Top observation platform
-                                <br />
-
-                                • Made from non-toxic and pet-safe materials
-                                <br />
-
-                                • Assembly Required
-                            </span>
-                        </div>
-                    </div>
-                    <div class="line center">
-                        <span style="margin-right:10px;">Quantity</span>
-                        <button id="@Model.Id" onclick="decreaseQuantity(@Model.Id)" class="arrow ChangeAmount">&lt;</button>
-                        <span id="prd-quantity-@Model.Id">1</span>
-                        <button id="@Model.Id" class="arrow ChangeAmount">&gt;</button>
-                    </div>
-                    <button class="add-btn form-control AddToCart" id="@Model.Id">Add to Cart</button>
-                    <a style="color:white" href="/CheckOut/CheckOutView?productId=@Model.Id" class="buy-btn form-control">Buy Now</a>
-                    @if (Model.Checked == true)
+                <div class="product-small-images d-flex">
+                    @foreach (string image in ViewBag.ProductImages)
                     {
-                        <div class="cat violet">
-                            <label>
-                                <input checked type="checkbox" class="checkbox like-checkbox" id="checkbox-@Model.Id" />
-                                <span class="like-text">Liked!</span>
-                            </label>
-                        </div>
+                        string imagesrc = $"/images/productimages/product{Model.Id}/{image}";
+                        <img class="small-image flex-item" src="@imagesrc" />
+                    }
+                </div>
+            </div>
+            <div class="flex-item item-2 product-text padd-40 two-sides">
+                <h2 class="text-md">@Model.Name</h2>
+                <h6>Price</h6>
+                <div class="price-container">
+                    @if (Model.Discount != null)
+                    {
+                        <span class="discounted-price">$ @Model.Price</span>
+                        <span class="price">$ @Model.GetDiscountedPrice()</span>
+                        <span class="discount">@Model.Discount %</span>
                     }
                     else
                     {
-                        <div class="cat violet">
-                            <label>
-                                <input type="checkbox" class="checkbox like-checkbox" id="checkbox-@Model.Id" />
-                                <span class="like-text">Like</span>
-                            </label>
-                        </div>
+                        <span class="price">$ @Model.Price</span>
                     }
                 </div>
-        </section>
-    </main>
-</body>
+                <div class="icon-container">
+                    <img class="small-icon" src="~/images/icons/globe.png" />
+                    <span class="icon-text">FREE SHIPPING within US</span>
+                </div>
+                <div class="icon-container">
+                    <img class="small-icon" src="~/images/icons/heart.svg" />
+                    <span class="icon-text">#1 Choice by our customers</span>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <span>Details</span>
+                        <div class="right arrow-down"></div>
+                    </button>
+                    <div class="dropdown-content">
+                        <span>
+                            • Measures approximately: 24" x 19.5" x 50"
+                            <br />
+                            • 100% all-natural Ash Wood
+                            <br />
+
+                            • 5 levels for ultimate kitty play
+                            <br />
+
+                            • Sleek, modern S-curve design
+                            <br />
+
+                            • Cozy Hammock and Basket Lounge
+                            <br />
+
+                            • 2 Removable sisal scratcher side pads
+                            <br />
+
+                            • 4 Removable felt platform covers to stimulate scratching and stress relief
+                            <br />
+
+                            • Hideaway cubby
+                            <br />
+
+                            • Plush faux fur cushion for hideaway cubby
+                            <br />
+
+                            • Top observation platform
+                            <br />
+
+                            • Made from non-toxic and pet-safe materials
+                            <br />
+
+                            • Assembly Required
+                        </span>
+                    </div>
+                </div>
+                <div class="line center">
+                    <span style="margin-right:10px;">Quantity</span>
+                    <button id="@Model.Id" onclick="decreaseQuantity(@Model.Id)" class="arrow ChangeAmount">&lt;</button>
+                    <span id="prd-quantity-@Model.Id">1</span>
+                    <button id="@Model.Id" class="arrow ChangeAmount">&gt;</button>
+                </div>
+                <button class="add-btn form-control AddToCart" id="@Model.Id">Add to Cart</button>
+                <a style="color:white" href="/CheckOut/CheckOutView?productId=@Model.Id" class="buy-btn form-control">Buy Now</a>
+                @if (Model.Checked == true)
+                {
+                    <div class="cat violet">
+                        <label>
+                            <input checked type="checkbox" class="checkbox like-checkbox" id="checkbox-@Model.Id" />
+                            <span class="like-text">Liked!</span>
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <div class="cat violet">
+                        <label>
+                            <input type="checkbox" class="checkbox like-checkbox" id="checkbox-@Model.Id" />
+                            <span class="like-text">Like</span>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
 <script src="~/js/productdetails.js" asp-append-version="true"></script>

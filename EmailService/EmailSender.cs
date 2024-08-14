@@ -17,7 +17,7 @@ namespace EmailService
         }
 
         public void SendEmail(Message message)
-        {
+        { 
             var builder = new BodyBuilder();
             var emailMessage = CreateEmailMessage(message, builder);
             Send(emailMessage);

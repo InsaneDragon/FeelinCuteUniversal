@@ -24,9 +24,11 @@ namespace FeelinCute.Models
         public string PurchaseId { get; set; }
         [Required(ErrorMessage = "ProductCount is required.")]
         public int ProductCount { get; set; }
-       override public double GetDiscountedPrice()
+       override public int GetDiscountedPrice()
         {
-            return ProductDiscount != null ? ProductPrice - (ProductDiscount.Value / 100 * ProductPrice) : ProductPrice;
+            double discountedPrice = 0;
+            discountedPrice= ProductDiscount != null ? ProductPrice - (ProductDiscount.Value / 100 * ProductPrice) : ProductPrice;
+            return (int)Math.Floor(discountedPrice);
         }
 
         public Purchase(string connectionString, double ProductPrice, double? ProductDiscount, int ProductId, string PurchaseId, int ProductCount)

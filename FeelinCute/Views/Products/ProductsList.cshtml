@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="~/css/productslist.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/heart.css" asp-append-version="true">
 </head>
-<body>
     <section class="app">
         <section class="filter">
             <span class="font-weight-bold">Filters</span>
@@ -46,7 +45,8 @@
                                 <input class="price-filter" id="toSlider" type="range" value="@max" min="@min" max="@max" />
                             </div>
                             <div class="form_control">
-                                $<input type="number" id="fromInput" value="@min" min="@min" max="@max" />-
+                                $<input type="number" id="fromInput" value="@min" min="@min" max="@max" />
+                                <div class="dash">-</div>
                                 $<input type="number" id="toInput" value="@max" min="@min" max="@max" />
                             </div>
                         </div>
@@ -74,5 +74,4 @@
             </ul>
         </nav>
     }
-</body>
 <script src="~/js/productslist.js"></script>

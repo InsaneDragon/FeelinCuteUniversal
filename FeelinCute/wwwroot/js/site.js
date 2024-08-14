@@ -8,6 +8,10 @@
     var addtocartButtons = document.querySelectorAll('.AddToCart');
     var dropbtns = document.querySelectorAll('.dropbtn');
     var prevScrollpos = window.pageYOffset
+    const textContainer = document.querySelector('.text-container');
+    const textWrapper = document.querySelector('.text-wrapper');
+    const textItems = document.querySelectorAll('.text-item');
+    
     $(".like-checkbox").change(function () {
         var checkboxId = $(this).attr('id'); // Get the ID of the checked checkbox
         var buttonid = checkboxId.split('-')[1]; // Extract the product ID from the checkbox ID
@@ -53,7 +57,7 @@
         })
     })
     function FlyingAnimation(id,flytoid) {
-        document.getElementById("navbar").style.top = "0";
+        document.getElementById("navbar").style.top = "47px";
         const miniImage = document.getElementById(`mini-image-${id}`);
         const miniImageRect = miniImage.getBoundingClientRect();
         const cartBtn = document.getElementById(flytoid); // Assuming "cart-btn" is the ID of the cart button
@@ -77,7 +81,7 @@
         var distanceFromTop = targetElement.getBoundingClientRect().top;
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
-            document.getElementById("navbar").style.top = "0";
+            document.getElementById("navbar").style.top = "47px";
         } else if (distanceFromTop < 0) {
             document.getElementById("navbar").style.top = "-92px";
         }

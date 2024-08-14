@@ -20,9 +20,11 @@ namespace FeelinCute.Models
             this.Discount = Discount;
             this.Image = Image;
         }
-       virtual public double GetDiscountedPrice()
+       virtual public int GetDiscountedPrice()
         {
-            return Discount != null ? Price - (Discount.Value / 100 * Price) : Price;
+            double discountedPrice;
+            discountedPrice = Discount != null ? Price - (Discount.Value / 100 * Price) : Price;
+            return (int)Math.Floor(discountedPrice);
         }
         public Product()
         {

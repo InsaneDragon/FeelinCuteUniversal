@@ -6,12 +6,6 @@
     width:30%;
     padding:20px;
 }
-.product-list {
-    width: 70%;
-}
-.product{
-    width:32%;
-}
 .center {
     display: flex;
     justify-content: center;
@@ -27,7 +21,7 @@
     display: flex;
     font-size: 20px;
     color: #635a5a;
-    padding-top:20px;
+    margin-top:20px;
     justify-content:center;
 }
 
@@ -65,8 +59,8 @@ input[type=range]::-webkit-slider-thumb:active {
 
 input[type="number"] {
     color: #8a8383;
-    width: 25px;
     font-size: 17px;
+
     border: none;
 }
 
@@ -88,4 +82,7 @@ input[type="range"] {
 #fromSlider {
     height: 0;
     z-index: 1;
+}
+.dash{
+    margin:0 35px 0 0;
 }
