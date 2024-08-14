@@ -2,14 +2,14 @@
 <head>
     <link rel="stylesheet" href="~/css/cartlist.css" asp-append-version="true" />
 </head>
-<body>
+<body class="">
     <span id="hidden-cart-count" style="display:none">@Model.Count</span>
-    <div id="cart-products">
+    <div id="cart-products" class="d-flex flex-wrap">
         @foreach (ProductForCookie product in Model)
         {
             double discountedprice = product.Discount != null ? product.Price - (product.Discount.Value / 100 * product.Price) : product.Price;
             double sum = discountedprice * product.PCount;
-            <div id="product-@product.Id" class="product-info Sides">
+            <div id="product-@product.Id" class="product-info">
                 <div class="image-container">
                     @Html.ActionLink("", "ProductDetails", "Home", new { productId = product.Id}, new { style=$"background-image:url(/images/{product.Image});", @class = "cart-img" })
                 </div>

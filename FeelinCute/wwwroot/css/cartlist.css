@@ -1,15 +1,19 @@
 ﻿
+.d-flex{
+    width:100%;
+}
 .product-info {
+    max-width:50%;
+    flex: 1 1 50%;
     font-size: 17px;
     text-align: center;
-    display: inline-block;
-    width: 47%;
     background-color: white;
-    margin: 1%;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
+.product{
+    max-width:400px;
+}
 .image-container {
     overflow: hidden;
     width:100%;

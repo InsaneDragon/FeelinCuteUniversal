@@ -11,7 +11,8 @@ namespace FeelinCute.Models
         public double Price { get; set; }
         public double? Discount { get; set; }
         public string Image { get; set; }
-        public Product(int Id, string Name, string? Description, double Price, double? Discount, string Image)
+        public string? SKU { get; set; }
+        public Product(int Id, string Name, string? Description, double Price, double? Discount, string Image,  string? SKU)
         {
             this.Id = Id;
             this.Name = Name;
@@ -19,10 +20,13 @@ namespace FeelinCute.Models
             this.Price = Price;
             this.Discount = Discount;
             this.Image = Image;
+            this.SKU = SKU;
         }
-       virtual public double GetDiscountedPrice()
+       virtual public int GetDiscountedPrice()
         {
-            return Discount != null ? Price - (Discount.Value / 100 * Price) : Price;
+            double discountedPrice;
+            discountedPrice = Discount != null ? Price - (Discount.Value / 100 * Price) : Price;
+            return (int)Math.Floor(discountedPrice);
         }
         public Product()
         {
@@ -35,17 +39,17 @@ namespace FeelinCute.Models
         public bool? Checked{ get; set; }
 
 
-        public ProductForCookie(Product p) : base(p.Id, p.Name, p.Description, p.Price, p.Discount, p.Image)
+        public ProductForCookie(Product p) : base(p.Id, p.Name, p.Description, p.Price, p.Discount, p.Image, p.SKU)
         {
             PCount = 1;
             Checked = false;
         }
-        public ProductForCookie(Product p,int quantity) : base(p.Id, p.Name, p.Description, p.Price, p.Discount, p.Image)
+        public ProductForCookie(Product p,int quantity) : base(p.Id, p.Name, p.Description, p.Price, p.Discount, p.Image, p.SKU)
         {
             PCount = quantity;
             Checked = false;
         }
-        public ProductForCookie(Product p, bool Checked) : base(p.Id, p.Name, p.Description, p.Price, p.Discount, p.Image)
+        public ProductForCookie(Product p, bool Checked) : base(p.Id, p.Name, p.Description, p.Price, p.Discount, p.Image, p.SKU)
         {
             PCount = 1;
             this.Checked = Checked;

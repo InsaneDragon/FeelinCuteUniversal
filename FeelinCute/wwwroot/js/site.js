@@ -1,13 +1,34 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     var cartPopup = document.getElementById("cart-popup");
+    var openSearchBtn = document.getElementById("search-btn");
     var cartBtn = document.getElementById("cart-btn");
     var closeCart = document.getElementById("cart-close");
+    var closeSearch = document.getElementById("search-close");
     var likedPopup = document.getElementById("liked-popup");
+    var searchPopup = document.getElementById("search-popup");
     var likedBtn = document.getElementById("liked-btn");
     var closeLiked = document.getElementById("likedCloseBtn");
     var addtocartButtons = document.querySelectorAll('.AddToCart');
     var dropbtns = document.querySelectorAll('.dropbtn');
     var prevScrollpos = window.pageYOffset
+    const textContainer = document.querySelector('.text-container');
+    const textWrapper = document.querySelector('.text-wrapper');
+    const textItems = document.querySelectorAll('.text-item');
+    document.querySelectorAll('.product-img').forEach(img => {
+        img.addEventListener('mouseover', () => {
+            const hoverImage = img.getAttribute('data-hover-image');
+            if (hoverImage) {
+                img.style.backgroundImage = `url(${hoverImage})`;
+                img.classList.add('product-img-expand');
+            }
+        });
+        // On mouse out, revert to the original image
+        img.addEventListener('mouseout', () => {
+            const originalImage = img.getAttribute('original-image');
+            img.style.backgroundImage = `url(${originalImage})`;
+            img.classList.remove('product-img-expand');
+        });
+    })
     $(".like-checkbox").change(function () {
         var checkboxId = $(this).attr('id'); // Get the ID of the checked checkbox
         var buttonid = checkboxId.split('-')[1]; // Extract the product ID from the checkbox ID
@@ -53,7 +74,7 @@
         })
     })
     function FlyingAnimation(id,flytoid) {
-        document.getElementById("navbar").style.top = "0";
+        document.getElementById("navbar").style.top = "47px";
         const miniImage = document.getElementById(`mini-image-${id}`);
         const miniImageRect = miniImage.getBoundingClientRect();
         const cartBtn = document.getElementById(flytoid); // Assuming "cart-btn" is the ID of the cart button
@@ -77,7 +98,7 @@
         var distanceFromTop = targetElement.getBoundingClientRect().top;
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
-            document.getElementById("navbar").style.top = "0";
+            document.getElementById("navbar").style.top = "47px";
         } else if (distanceFromTop < 0) {
             document.getElementById("navbar").style.top = "-92px";
         }
@@ -93,8 +114,14 @@
             cartPopup.style.width = "35%";
         }
     });
+    openSearchBtn.addEventListener("click", function () {
+            cartPopup.style.width = "100%";
+    });
     closeCart.addEventListener("click", function () {
         cartPopup.style.width = "0";
+    });
+    closeSearch.addEventListener("click", function () {
+        searchPopup.style.width = "0";
     });
     likedBtn.addEventListener("click", function () {
         var width = document.body.offsetWidth;
@@ -144,10 +171,12 @@
             <div class="image-container">
             <a href="/Home/ProductDetails?productId=${product.id}" style="background-image: url('/images/${product.image}');" class="cart-img"></a>
                 </div>
+                <div class="line">
                 <span class="prd-name">${product.name}</span>
                 <span>$</span>
                 <span id="price-${product.id}" class="prd-price">${sum}</span>
-                <div class="arrows">
+                </div>
+                <div class="line">
                     <button onclick="changeQuantity(${product.id},'<')" class="arrow">&lt;</button>
                     <span id="quantity-${product.id}">${product.pCount}</span>
                     <button onclick="changeQuantity(${product.id},'>')" class="arrow">&gt;</button>

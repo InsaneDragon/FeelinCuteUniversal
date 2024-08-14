@@ -29,14 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\images\productimages\product1\1.jpg">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Views\Additional\" />
+    <Folder Include="wwwroot\images\productimages\product2\" />
   </ItemGroup>
 
   <ItemGroup>

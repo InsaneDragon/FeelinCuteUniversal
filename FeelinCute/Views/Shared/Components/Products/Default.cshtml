@@ -1,12 +1,23 @@
 ﻿@model List<ProductForCookie>
-<head>
-</head>
-<body>
+@{
+    var secondaryImages = ViewBag.SecondaryImages as Dictionary<int, string>;
+}
+
+    <div class="d-flex flex-wrap">
     @foreach (ProductForCookie product in Model)
     {
+        string SecondaryImage = secondaryImages != null && secondaryImages.ContainsKey(product.Id)
+        ? secondaryImages[product.Id]
+        : "1.jpg";
+        string fullsecondarylink = $"/images/productimages/product{product.Id}/{SecondaryImage}";
         <div class="product" id="product-container-@product.Id">
             <div class="product-wrapper">
-                @Html.ActionLink("", "ProductDetails", "Home", new { productId = product.Id}, new { style=$"background-image:url(/images/{product.Image});", @class = "product-img" })
+                <a class="product-img"
+                   data-hover-image="@fullsecondarylink"
+                   original-image="/images/@product.Image"
+                   href="/Home/ProductDetails?productId=@product.Id"
+                   style="background-image:url(/images/@product.Image);">
+                </a>
                 <img src="/images/@product.Image" id="mini-image-@product.Id" alt="Mini Image" class="mini-image">
             </div>
             @if (product.Checked == true)
@@ -40,4 +51,4 @@
             <button class="add-btn form-control AddToCart" id="@product.Id">Add to Cart</button>
         </div>
     }
-</body>
+    </div>

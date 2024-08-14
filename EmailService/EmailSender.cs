@@ -17,7 +17,7 @@ namespace EmailService
         }
 
         public void SendEmail(Message message)
-        {
+        { 
             var builder = new BodyBuilder();
             var emailMessage = CreateEmailMessage(message, builder);
             Send(emailMessage);
@@ -36,6 +36,7 @@ namespace EmailService
             emailMessage.From.Add(new MailboxAddress(_emailConfig.UserName, _emailConfig.From));
             emailMessage.To.AddRange(message.To);
             emailMessage.Subject = message.Subject;
+            builder.TextBody = message.Content;
             emailMessage.Body = builder.ToMessageBody();
             return emailMessage;
         }

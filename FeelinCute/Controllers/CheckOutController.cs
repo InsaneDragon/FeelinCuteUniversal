@@ -1,14 +1,19 @@
 ﻿using EmailService;
 using FeelinCute.Areas.Identity.Data;
 using FeelinCute.Models;
+using FeelinCute.Controllers; // Make sure to include your TokenService namespace
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FeelinCute.Controllers
@@ -20,14 +25,16 @@ namespace FeelinCute.Controllers
         private readonly string _connectionString;
         private readonly AdminOptions _adminOptions;
         private readonly EmailSender _emailSender;
+        private readonly TokenServices _tokenService; // Add TokenService reference
 
-        public CheckOutController(IHttpContextAccessor context, UserManager<AppUser> userManager, string connectionString, AdminOptions adminOptions, EmailConfiguraion emailConfig)
+        public CheckOutController(IHttpContextAccessor context, UserManager<AppUser> userManager, string connectionString, AdminOptions adminOptions, EmailConfiguraion emailConfig, TokenServices tokenService) // Inject TokenService
         {
             _connectionString = connectionString;
             _httpContextAccessor = context;
             _userManager = userManager;
             _adminOptions = adminOptions;
             _emailSender = new EmailSender(emailConfig);
+            _tokenService = tokenService; // Initialize TokenService
         }
 
         public ActionResult CheckOutView(int? productId)
@@ -69,7 +76,19 @@ namespace FeelinCute.Controllers
             }
         }
 
-        public void MakeAPurchase(UserInfoForCheckOut userInfo)
+        [HttpPost]
+        public async Task<ActionResult> ConfirmPurchaseView(UserInfoForCheckOut userInfo)
+        {
+            // Fetch the access token before making a purchase
+            string accessToken = await _tokenService.GetAccessTokenAsync();
+
+            // Call MakeAPurchase with the token if needed
+            MakeAPurchase(userInfo, accessToken);
+
+            return View();
+        }
+
+        public void MakeAPurchase(UserInfoForCheckOut userInfo, string accessToken)
         {
             try
             {
@@ -77,6 +96,10 @@ namespace FeelinCute.Controllers
                 List<ProductForCookie> Purchases = service.GetListFromCookie<ProductForCookie>("CheckOut");
                 if (Purchases.Count > 0)
                 {
+                    foreach (ProductForCookie purchase in Purchases)
+                    {
+                        _tokenService.PlaceOrderAsync(userInfo, purchase);
+                    }
                     string PurchaseId = GenerateRandomID(49);
                     using (var dbContext = new SqlConnection(_connectionString))
                     {
@@ -125,13 +148,6 @@ namespace FeelinCute.Controllers
                 imageNames,
                 _adminOptions.AdminEmail
             );
-        }
-
-        [HttpPost]
-        public ActionResult ConfirmPurchaseView(UserInfoForCheckOut userInfo)
-        {
-            MakeAPurchase(userInfo);
-            return View();
         }
 
         public static string GenerateRandomID(int length)

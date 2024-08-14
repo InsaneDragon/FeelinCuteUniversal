@@ -61,6 +61,13 @@ namespace FeelinCute.Controllers
                 return dbContext.Query<string>($"select Imagename from Images where Productid={productId}").ToArray();
             }
         }
+        public static string GetProductSecondaryImage(int productId)
+        {
+            using (var dbContext = new SqlConnection(ConnectionString))
+            {
+                return dbContext.QueryFirstOrDefault<string>($"select TOP 1 Imagename from Images where Productid={productId}");
+            }
+        }
         public static (int minPrice, int maxPrice) GetMinAndMax()
         {
             using (var dbContext = new SqlConnection(ConnectionString))
@@ -110,7 +117,8 @@ namespace FeelinCute.Controllers
                 try
                 {
                     // Insert the email
-                    dbContext.Execute("INSERT INTO GuestsEmails (Email) VALUES (@Email)", new { Email });
+                    string Id = GenerateUniqueCode(449);
+                    dbContext.Execute("INSERT INTO GuestsEmails VALUES (@Id, @Email)", new { Id, Email });
                     return true; // Return true indicating successful insertion
                 }
                 catch (SqlException ex)
@@ -150,13 +158,19 @@ namespace FeelinCute.Controllers
                 return connection.QueryFirstOrDefault<Promotion>(query, new { UserId = userId, Today = today });
             }
         }
-
-        static string GenerateUniqueCode()
+        public static void RecordPromotionSent(string userId, int promotionId)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Execute("INSERT INTO UserPromotions (UserId, PromotionId, SentDate) VALUES (@UserId, @PromotionId, @SentDate)",
+    new { UserId = userId, PromotionId = promotionId, SentDate = DateTime.Now });
+            }
+        }
+        static string GenerateUniqueCode(int count)
         {
             var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var code = new char[6];
+            var code = new char[count];
             var random = new Random();
-
             for (int i = 0; i < code.Length; i++)
             {
                 code[i] = characters[random.Next(characters.Length)];

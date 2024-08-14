@@ -22,8 +22,7 @@ namespace FeelinCute.Controllers
             bool newUser = DbOperations.AddGuestEmail(email);
             if (newUser)
             {
-                var promotions = new List<Promotion>();
-                var message = new Message(new string[] { email }, "Welcome to Arion", "We have some exciting new promotions for you. Don't miss out!", promotions);
+                var message = new Message(new string[] { email }, "Welcome to Arion", "We have some exciting new promotions for you. Don't miss out!", null);
                 _emailSender.SendEmail(message);
                 return Ok(new { success = true, message = "Email has been successfully registered" });
             }

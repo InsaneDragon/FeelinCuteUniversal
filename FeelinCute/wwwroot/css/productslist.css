@@ -1,16 +1,11 @@
 ﻿.app {
-    display: flex;
     padding: 3% 10% 3% 10%;
 }
 .filter{
-    width:30%;
+    flex:1 0 30%;
     padding:20px;
-}
-.product-list {
-    width: 70%;
-}
-.product{
-    width:32%;
+    max-width:500px;
+    min-width:200px;
 }
 .center {
     display: flex;
@@ -21,13 +16,18 @@
     flex-direction: column;
     padding:20px 10px 20px 10px;
 }
-
+.product{
+    flex:1 0 25%;
+}
+.product-list{
+    flex:0 0 70%;
+}
 .form_control {
     position: relative;
     display: flex;
     font-size: 20px;
     color: #635a5a;
-    padding-top:20px;
+    margin-top:20px;
     justify-content:center;
 }
 
@@ -65,8 +65,8 @@ input[type=range]::-webkit-slider-thumb:active {
 
 input[type="number"] {
     color: #8a8383;
-    width: 25px;
     font-size: 17px;
+
     border: none;
 }
 
@@ -88,4 +88,7 @@ input[type="range"] {
 #fromSlider {
     height: 0;
     z-index: 1;
+}
+.dash{
+    margin:0 35px 0 0;
 }

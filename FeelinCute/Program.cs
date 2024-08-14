@@ -5,6 +5,9 @@ using EmailService;
 using Microsoft.EntityFrameworkCore;
 using FeelinCute.Areas.Identity.Data;
 using FeelinCute.Models;
+using FeelinCute.Controllers;
+using Stripe;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -16,10 +19,14 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
 builder.Services.AddControllersWithViews();
 EmailConfiguraion emailConfig = builder.Configuration.GetSection("EmailConfiguraion").Get<EmailConfiguraion>();
 AdminOptions adminEmail = builder.Configuration.GetSection("AdminOptions").Get<AdminOptions>();
+SJAuthentication sjAuthentication = builder.Configuration.GetSection("SJAuthentication").Get<SJAuthentication>();
 builder.Services.AddSingleton(emailConfig);
 builder.Services.AddSingleton(adminEmail);
+builder.Services.AddSingleton(sjAuthentication);
+builder.Services.AddHttpClient<TokenServices>();
+builder.Services.AddControllers();
+builder.Services.AddSingleton<TokenService>(); // If your TokenService is Singleton
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
-builder.Services.AddSingleton(connectionString);
 builder.Services.AddHostedService<ScheduledEmailService>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();

@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Apt">Apt# (Optional):</label>
-                        <input type="number" id="Apt" name="Apt" class="form-control" placeholder="#" />
+                        <input type="text" id="Apt" name="Apt" class="form-control" placeholder="#" pattern="\d*" />
                         @Html.ValidationMessage("Apt")
                     </div>
                     <div class="form-group">

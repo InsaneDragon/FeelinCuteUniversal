@@ -37,7 +37,7 @@ namespace EmailService
                         if (promotionToSend != null)
                         {
                              _emailSender.SendPromotion(user.Email,promotionToSend);
-                            RecordPromotionSent(user.Id, promotionToSend.Id, promotionToSend.Code);
+                          DbOperations.RecordPromotionSent(user.Id, promotionToSend.Id);
                         }
                         else
                         {
@@ -62,11 +62,6 @@ namespace EmailService
         }
 
         // Method to record promotion sent to user
-        private void RecordPromotionSent(string userId, int promotionId, string promotionCode)
-        {
-            // Implement logic to record the sent promotion (e.g., in UserPromotions table)
-            // Example implementation:
-            // DbOperations.RecordPromotionSent(userId, promotionId, promotionCode);
-        }
+       
     }
 }

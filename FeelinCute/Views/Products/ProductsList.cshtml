@@ -3,32 +3,10 @@
     <link rel="stylesheet" href="~/css/productslist.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/heart.css" asp-append-version="true">
 </head>
-<body>
-    <section class="app">
+    <section class="app d-flex flex-wrap justify-content-evenly">
         <section class="filter">
-            <span class="font-weight-bold">Filters</span>
+            <span class="font-weight-bold"> Filters</span>
             <span class="font-weight-bold" id="filter-count">(0)</span>
-            <div class="filter-line">
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <span>Gender</span>
-                        <div class="right text-sm">+</div>
-                    </button>
-                    <div class="dropdown-content">
-                        <span>
-                            • Measures approximately: 24" x 19.5" x 50"
-                            <br />
-                            • 100% all-natural Ash Wood
-                            <br />
-                            • 5 levels for ultimate kitty play
-                            <br />
-                            • Sleek, modern S-curve design
-                            <br />
-                        </span>
-                    </div>
-
-                </div>
-            </div>
             <div class="filter-line">
                 <div class="dropdown">
                     <button class="dropbtn">
@@ -46,7 +24,8 @@
                                 <input class="price-filter" id="toSlider" type="range" value="@max" min="@min" max="@max" />
                             </div>
                             <div class="form_control">
-                                $<input type="number" id="fromInput" value="@min" min="@min" max="@max" />-
+                                $<input type="number" id="fromInput" value="@min" min="@min" max="@max" />
+                                <div class="dash">-</div>
                                 $<input type="number" id="toInput" value="@max" min="@min" max="@max" />
                             </div>
                         </div>
@@ -74,5 +53,4 @@
             </ul>
         </nav>
     }
-</body>
 <script src="~/js/productslist.js"></script>

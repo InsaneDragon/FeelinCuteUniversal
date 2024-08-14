@@ -16,10 +16,27 @@
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 20px;
-    width: 30vw;
+    min-width: 30%; /* Minimum width for smaller screens */
+    max-width: 90%; /* Ensure it doesn't overflow the screen */
     border-radius: 4px;
     z-index: 1001;
     display: none;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #email-popup {
+        padding: 15px;
+        min-width: 80%; /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    #email-popup {
+        padding: 10px;
+        min-width: 90%; /* Further adjust width for very small screens */
+    }
 }
 
 .text-btn {
@@ -28,7 +45,7 @@
 }
 
 #email-popup * {
-    margin: 10px;
+    margin: 10px 0 10px 0;
 }
 .form-control{
     padding:10px;

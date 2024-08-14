@@ -1,6 +1,7 @@
 ﻿using FeelinCute.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace FeelinCute.Controllers
@@ -16,8 +17,16 @@ namespace FeelinCute.Controllers
 
         public IActionResult Index()
         {
+            Product[] products = DbOperations.GetProducts();
             CartService service = new CartService(_httpContextAccessor);
-            return View(service.CheckIfLiked(DbOperations.GetProducts()));
+            Dictionary<int, string> valuePairs = new Dictionary<int, string>();
+            foreach (Product product in products)
+            {
+              string secondary =  DbOperations.GetProductSecondaryImage(product.Id);
+                if (!string.IsNullOrEmpty(secondary)) valuePairs.Add(product.Id,secondary);
+            }
+            ViewBag.SecondaryImages=valuePairs;
+            return View(service.CheckIfLiked(products));
         }
         public IActionResult ProductDetails(int productId)
         {

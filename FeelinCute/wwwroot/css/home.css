@@ -1,10 +1,4 @@
-﻿.comments {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
+﻿
 .comment {
     padding: 20px;
 }
@@ -15,14 +9,13 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    margin-bottom: 50px;
 }
 
 .stars {
-    color: #007bff; /* Blue color */
+    color: #50C878; /* Blue color */
 }
 
-    .stars .star {
+    .stars .star {  
         font-size: 40px;
     }
 
@@ -62,15 +55,17 @@
     }
 
 
-
-.carousel-inner .carousel-item.active,
-.carousel-inner .carousel-item-next,
-.carousel-inner .carousel-item-prev {
+#Comments .carousel-inner .carousel-item.active,
+#Comments .carousel-inner .carousel-item-next,
+#Comments .carousel-inner .carousel-item-prev {
     display: flex;
 }
-
-#Comments .carousel-control-next-icon:after,
-#Comments .carousel-control-prev-icon:after {
+.flexbox {
+    display: flex;
+    justify-content:space-evenly;
+}
+.carousel-control-next-icon:after,
+.carousel-control-prev-icon:after {
     font-size: 35px;
     position: absolute;
     top: 20%;
@@ -91,4 +86,50 @@
 #Comments .carousel-control-prev-icon:hover {
     transition: opacity 0.3s ease;
     opacity: 0.5;
+}
+.carousel-text {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    color: white;
+    font-size: 3vw;
+    font-weight:bold;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    width:50%;
+}
+@media(width<1100px) {
+    #Comments .carousel-item {
+        display:block;
+    }
+
+   #Comments .carouse   l-item .comment {
+        flex: 0 0 100%;
+        max-width:100%;
+    }
+}
+.swiper-container {
+    max-width:100%;
+    width: 100%;
+    padding:20px;
+    height: 250px;
+    overflow:hidden;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (width < 800px) {
+
+    #productCarousel .carousel-item {
+        display: block;
+    }
+
+    #productCarousel .carousel-control-prev, #productCarousel .carousel-control-next {
+        display: none;
+    }
 }
